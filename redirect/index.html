@@ -5,17 +5,24 @@
     <title>Redirect Confirmation</title>
     <script>
         function getRedirectUrlFromPath() {
-            // Get current URL path from query param url
-            const targetUrl = new URLSearchParams(window.location.search).get('url');
+            const targetUrlb64= new URLSearchParams(window.location.search).get('url');
+            const targetUrl = atob(targetUrlb64);
+            console.log(targetUrl);
             return targetUrl;
         }
-
+        
         function redirectTo() {
             const url = getRedirectUrlFromPath();
-            const userConfirmation = confirm("Do you want to proceed to the external link?");
+            const userConfirmation = confirm(`Do you want to proceed to: ${url}?`);
             if (userConfirmation) {
                 window.location.href = url;
             }
+        }
+        
+        const targetUrl = getRedirectUrlFromPath();
+        // modify H2 after html loads
+        window.onload = function() {
+            document.querySelector('h2').innerHTML = `Click below to proceed to: ${targetUrl}`;
         }
     </script>
 </head>
