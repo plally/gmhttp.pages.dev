@@ -2,20 +2,11 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Redirect Confirmation</title>
     <script>
         function getRedirectUrlFromPath() {
-            // Get current URL path
-            const path = window.location.pathname;
-            
-            // Extract the base64 encoded part
-            const base64segment = path.split("/redirect/")[1];
-
-            // Decode the base64 segment to get the target URL
-            const targetUrl = atob(base64segment);
-            
+            // Get current URL path from query param url
+            const targetUrl = new URLSearchParams(window.location.search).get('url');
             return targetUrl;
         }
 
