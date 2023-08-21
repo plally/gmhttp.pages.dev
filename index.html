@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Redirect Confirmation</title>
+    <script>
+        function getRedirectUrlFromPath() {
+            // Get current URL path
+            const path = window.location.pathname;
+            
+            // Extract the base64 encoded part
+            const base64segment = path.split("/redirect/")[1];
+
+            // Decode the base64 segment to get the target URL
+            const targetUrl = atob(base64segment);
+            
+            return targetUrl;
+        }
+
+        function redirectTo() {
+            const url = getRedirectUrlFromPath();
+            const userConfirmation = confirm("Do you want to proceed to the external link?");
+            if (userConfirmation) {
+                window.location.href = url;
+            }
+        }
+    </script>
+</head>
+<body>
+    <h2>Click below to proceed to an external link</h2>
+    <button onclick="redirectTo()">Go to External Link</button>
+</body>
+</html>
+
