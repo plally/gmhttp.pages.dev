@@ -5,8 +5,9 @@
     <title>Redirect Confirmation</title>
     <script>
         function getRedirectUrlFromPath() {
-            const targetUrlb64= new URLSearchParams(window.location.search).get('url');
-            const targetUrl = atob(targetUrlb64);
+            const targetEncoded = new URLSearchParams(window.location.search).get('url');
+            // url decode
+            const targetUrl = decodeURI(targetEncoded);
             console.log(targetUrl);
             return targetUrl;
         }
