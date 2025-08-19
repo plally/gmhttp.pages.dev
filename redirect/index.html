@@ -14,10 +14,7 @@
         
         function redirectTo() {
             const url = getRedirectUrlFromPath();
-            const userConfirmation = confirm(`Do you want to proceed to: ${url}?`);
-            if (userConfirmation) {
-                window.location.href = url;
-            }
+            window.location.href = url; 
         }
         
         const targetUrl = getRedirectUrlFromPath();
